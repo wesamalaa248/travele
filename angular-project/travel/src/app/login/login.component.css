@@ -1,0 +1,20 @@
+section{
+    position: relative;
+    background-size: cover;
+    background-position:center;
+}
+.container{
+    padding-top: 60px;
+}
+.button-primary {
+    border: none;
+    color: #ffffff;
+    display: inline-block;
+    position: relative;
+    padding: 10px 24px;
+    background-color: #F56960;
+    border-radius: 5px;
+}
+.button-primary:hover{
+    background-color: #0085ba;
+}

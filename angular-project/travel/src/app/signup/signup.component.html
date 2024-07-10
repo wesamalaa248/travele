@@ -1,0 +1,99 @@
+<!-- Registration 1 - Bootstrap Brain Component -->
+<div class="py-3 py-md-5" style="background-image: url('../assets/bb.gif'); ">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-12 col-md-11 col-lg-8 col-xl-7 col-xxl-6">
+          <div class="bg-white p-4 p-md-5 rounded shadow-sm">
+            <div class="row">
+              <div class="col-12">
+                <div class="text-center mb-5">
+                  <a href="#!">
+                    <img src="../assets/travele-logo1.png" alt="BootstrapBrain Logo" width="200" height="57">
+                  </a>
+                </div>
+              </div>
+            </div>
+            <form [formGroup]="form" (ngSubmit)="submit()">
+              <div class="row gy-3 gy-md-4 overflow-hidden">
+
+                <div class="col-12">
+                  <label for="name" class="form-label">Name </label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="name" formControlName="name" >
+                  </div>
+                  <div *ngIf="f['name'].touched && f['name'].invalid" style="color: red;">
+                   <div *ngIf="f['name'].errors && f['name'].errors['required']"> full Name is required</div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="email" class="form-label">Email </label>
+                  <div class="input-group">
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                  </div>
+                    <div *ngIf="f['email'].touched && f['email'].invalid" style="color: red;">
+                    <div *ngIf="f['email'].errors && f['email'].errors['required']"> Email is required </div>
+                    <div *ngIf="f['email'].errors && f['email'].errors['email']"> Invalid Email </div>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="email" class="form-label">Phone </label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" pattern="^01[0,1,2,5]{1}[0-9]{8}$" 
+                    onkeypress="if(this.value.length==11) return false; return /[0-9]/i.test(event.key)" id="phone"  formControlName="phone">
+                  </div>
+                  <div *ngIf="f['phone'].touched && f['phone'].invalid" style="color: red;">
+                    <div *ngIf="f['phone'].errors && f['phone'].errors['required']"> phone is required </div>
+                    <div *ngIf="f['phone'].errors && f['phone'].errors['pattern']"> Invalid phone </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="password" class="form-label">Password </label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" id="password" value="" formControlName="password">
+                  </div>
+                  <div *ngIf="f['password'].touched && f['password'].invalid" style="color: red;">
+                    <div *ngIf="f['password'].errors && f['password'].errors['required']"> password is required </div>
+                    <div *ngIf="f['password'].errors && f['password'].errors['pattern']"> Invalid password<br>
+                    <span style="color: gray;">(password contains at least one digit,one lowercase letter,one uppercase letter and no whitespace. minimum length of 8 characters)</span></div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                    <label for="password" class="form-label">Confirm Password </label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="password_confirmation" value="" formControlName="password_confirmation">
+                    </div>
+                    <div *ngIf="f['password_confirmation'].touched && f['password_confirmation'].invalid" style="color: red;">
+                      <div *ngIf="f['password_confirmation'].errors && f['password_confirmation'].errors['required']"> confirm password is required </div>
+                      <div *ngIf="f['password_confirmation'].errors && f['password_confirmation'].errors['passwordMismatch']"> password and confirm password not match </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                  <label for="image">Image:</label>
+                  <input type="file" id="image" (change)="onFileChange($event)" accept="image/*">
+                </div>
+
+                <div class="col-12">
+                  <div class="d-grid">
+                    <button class="button-primary" type="submit" >Sign Up</button>
+                    <div *ngIf="successMessage" class="alert alert-success mt-3">{{ successMessage }}</div>
+                    <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+                  </div>
+                </div>
+
+              </div>
+            </form>
+            <div class="row">
+              <div class="col-12">
+                <hr class="mt-5 mb-4 border-secondary-subtle">
+                <p class="m-0 text-secondary text-center">Already have an account? <a href="/login" class="link-primary text-decoration-none">Sign in</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

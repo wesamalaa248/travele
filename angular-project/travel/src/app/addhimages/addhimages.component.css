@@ -1,0 +1,23 @@
+section{
+    position: relative;
+    background-size: cover;
+    background-position:center;
+}
+.container{
+    padding: 60px 0 46px 0;
+}
+.btn-primary {
+    border: none;
+    color: #ffffff;
+    display: inline-block;
+    position: relative;
+    padding: 10px 24px;
+    background-color: #F56960;
+    border-radius: 5px;
+}
+.btn-primary:hover{
+    background-color: #0085ba;
+}
+h3{
+    text-align: center;
+}

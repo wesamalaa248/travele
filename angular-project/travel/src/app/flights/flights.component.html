@@ -1,0 +1,126 @@
+<!-- flights.component.html -->
+
+<header class="hero" style="background-image: url('../assets/flights.webp');">
+  <div class="container">
+    <h1>Find Cheap Flight Deals</h1>
+    <br>
+    <div class="search-container">
+      <form [formGroup]="searchForm" (ngSubmit)="searchFlights()">
+      <div class="row g-3">
+        <div class="col-md-3">
+          <label for="leavingFrom" class="form-label">Leaving From</label>
+          <input type="text" class="form-control" id="departure_airport" formControlName="leavingFrom" placeholder="Departure Airport">
+        </div>
+        <div class="col-md-3">
+          <label for="goingTo" class="form-label">Going to</label>
+          <input type="text" class="form-control" id="arrival_airport" formControlName="goingTo" placeholder="Arrival Airport">
+        </div>
+        <div class="col-md-2">
+          <label for="depart" class="form-label">Departure Date</label>
+          <input type="date" class="form-control" id="departure_time" formControlName="departDate">
+        </div>
+        <div class="col-md-2">
+          <label for="passengers" class="form-label">Number of Passengers</label>
+          <div class="passenger-select" (click)="togglePassengerForm()">
+            <span>{{ adults }} Adult, {{ searchForm.value.travelClass }} class</span>
+          </div>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+          <button type="button" class="button-primary w-100" (click)="searchFlights()">Search</button>
+        </div>
+      </div>
+      </form>
+      <div *ngIf="showPassengerForm" class="passenger-form">
+        <div class="passenger-form-header">
+          <span>{{ adults }} Adult, {{ searchForm.value.travelClass }}</span>
+        </div>
+        <p>Please select the exact number of passengers to view the best prices</p>
+        <div class="row g-3 mt-3">
+          <div class="col-md-12">
+            <label>Adults</label>
+            <div class="passenger-count">
+              <button type="button" (click)="updateCount('adults', -1)" [disabled]="adults <= 1">-</button>
+              <input type="number" [(ngModel)]="adults" name="adults" min="1" readonly>
+              <button type="button" (click)="updateCount('adults', 1)">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="row g-3 mt-3">
+          <div class="col-md-12">
+            <label>Class</label>
+            <select [(ngModel)]="searchForm.value.travelClass" name="travelClass" class="form-select">
+              <option value="Economy">Economy</option>
+              <option value="Economy/Premium Economy">Economy/Premium Economy</option>
+              <option value="Premium Economy">Premium Economy</option>
+              <option value="Business/First">Business/First</option>
+              <option value="Business">Business</option>
+              <option value="First">First</option>
+            </select>
+          </div>
+        </div>
+        <div class="row g-3 mt-3">
+          <div class="col-md-12">
+            <button type="button" class="button-primary w-100" (click)="togglePassengerForm()">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="features-section">
+  <div class="container">
+    <div class="header">
+      <h1><span>Travelle.com</span> your trusted travel companion</h1>
+    </div>
+    <div class="features">
+      <div class="feature">
+          <div class="icon">🔵</div>
+          <h2>Save & Earn</h2>
+          <p>Become a member to get exclusive discounts and earn Trip Coins which can be used just like cash.</p>
+      </div>
+      <div class="feature">
+          <div class="icon">🌐</div>
+          <h2>We're Global</h2>
+          <p>Trusted by 300 million travelers. Cooperation with over 680 international airlines. Covering more than 40 countries.</p>
+      </div>
+      <div class="feature">
+          <div class="icon">⚡</div>
+          <h2>Support in Approx. 30s</h2>
+          <p>We usually answer phone calls within 30 seconds.</p>
+      </div>
+   </div>
+    <h3 class="dash-style">All Flights</h3>
+    <div class="card-container">
+      <div *ngIf="noFlightsFound" class="no-flights-message text-center">
+        <p>No flights found for the selected date. Please choose another date or check back later.</p>
+      </div>
+      <div class="card" *ngFor="let flight of filteredFlights">
+        <div class="card-content">
+          <div class="row">
+            <div class="col-md-2 airline">
+              <img [src]="'http://localhost:8000/storage/' + flight.airline_image" alt="{{ flight.airline }}">
+              <span class="airline-name">{{ flight.airline }}</span>
+            </div>
+            <div class="col-md-6 flight-details">
+              <div class="time">
+                <span class="departure-time">{{ flight.departure_time | timeFormat }}</span>
+                <span class="code">{{ flight.departure_airport }}</span>
+              </div>
+              <div class="horizontal-line">{{ flight.duration }} h</div>
+              <div class="time">
+                <span class="arrival-time">{{ flight.arrival_time | timeFormat }}</span>
+                <span class="code">{{ flight.arrival_airport }}</span>
+              </div>
+            </div>
+            <div class="col-md-2 price-info">
+              <span class="price">{{ flight.price | currency:'EGP' }}</span>
+              <a class="button-primary text-decoration-none" (click)="navigateToTicket(flight)">Reserve</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

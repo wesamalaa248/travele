@@ -1,0 +1,150 @@
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  position: relative;
+  z-index: 500;
+  background-size: cover;
+  background-position: center center;
+  padding: 150px 0;
+  align-items: center;
+}
+
+.header {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(29, 29, 29, 0.418);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 20px;
+ 
+}
+
+.head h1 {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  text-align: center;
+}
+
+.card {
+  background: linear-gradient(360deg, #e0e9fa, #97afd4);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  text-align: center;
+  width: 300px;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+}
+
+i {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #007bff;
+  background-color: rgb(206, 229, 236);
+  border-radius: 100%;
+  padding: 10px;
+}
+
+.social-icons a {
+  font-size: 1.5rem;
+  color: #333;
+  margin-right: 10px;
+}
+
+.social-icons a:hover {
+  color: #007bff;
+}
+
+.btn-primary {
+  background-color: #F56960;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #007bff;
+}
+.contact{
+  color:#007bff;
+  font-family: 'Times New Roman', Times, serif;
+}
+.head-form{
+  color:#007bff;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+}
+h4,h5{
+  color:#007bff;
+}
+h1{
+  color:rgb(6, 6, 61);
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.divider {
+  border: none;
+  height: 1px;
+  background-color: #a09a9a;
+  margin: 20px 0;
+}
+
+
+.form {
+  border: 1px solid lightgray;
+  padding: 30px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.form .form-control {
+  margin-bottom: 20px;
+}
+
+.form .form-select {
+  margin-bottom: 20px;
+}
+
+.container-fluid {
+  padding: 0 20px 20px 20px;
+ color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+.mybg-music {
+  background-size: cover;
+}
+
+.testimonials{
+  padding-top:5rem;
+  padding-bottom:5rem;
+}

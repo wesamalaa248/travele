@@ -1,0 +1,53 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidebar" [ngClass]="{ 'active': isSidebarOpen }">
+        <a class="navbar-brand"><img src="assets/travele-logo1.png" alt="Logo"></a>
+        <ul>
+          <li><a href="/addhotel">Add New Hotels</a></li>
+          <li><a href="/himages">Add Hotel Images</a></li>
+          <li><a href="/addflight">Add New Flights</a></li>
+          <li><a href="/addtrip">Add New Trips</a></li>
+          <li><a href="/gethotel">Get Hotels</a></li>
+          <li><a href="/getflight">Get Flights</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <i class="fa-solid fa-list fa-xl" style="color: #f6f7f9;"></i>
+      </button>
+    </div>
+
+    <div class="col-md-10">
+      <div class="table-responsive">
+        <table class="table table-striped custab">
+          <thead>
+            <tr>
+              <th>Hotel Name</th>
+              <th>Image</th>
+              <th>Location</th>
+              <th>Price</th>
+              <th>Rating</th>
+              
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let hotel of hotels">
+              <td>{{ hotel.name }}</td>
+              <td><img *ngIf="hotel.image" [src]="'http://localhost:8000/storage/' + hotel.image" alt="{{ hotel.name }}" width="100"></td>
+              <td>{{ hotel.location }}</td>
+              <td>{{ hotel.price_per_night }}</td>
+              <td>{{ hotel.rate }}</td>
+              
+              <td class="text-center">
+                <a class='btn btn-info btn-xs' [routerLink]="['/edithotel', hotel.id]"><i class="fas fa-edit"></i> </a>
+                <a (click)="deleteHotel(hotel.id)" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

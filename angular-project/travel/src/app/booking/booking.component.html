@@ -1,0 +1,109 @@
+<!-- booking.component.html -->
+
+<header class="hero" style="background-image: url('assets/inner-banner.jpg');">
+  <div class="head">
+    <h1 class="header">Booking</h1>
+  </div>
+</header>
+<br><br>
+<div class="container">
+  <div class="col-md-5">
+    <div class="booking-container">
+      <div class="hotel-info">
+        <h2>{{ hotel.name }}</h2>
+        <p>{{ hotel.location }}</p>
+        <p class="rating">Rating: {{ hotel.rate }}</p>
+        <div class="icons">
+          <span>🚐 Airport shuttle</span>
+          <span>🅿️ Parking</span>
+          <span>🍴 Restaurant</span>
+          <span>🏊 Swimming pool</span>
+        </div>
+      </div>
+      <div class="booking-details">
+        <h3>Your booking details</h3>
+        <div class="details">
+          <!-- Example of booking details based on hotel data -->
+          <p><strong>Check-in:</strong> {{ hotel.checkin }}</p>
+          <p>From 2:00 PM</p>
+          <p><strong>Check-out:</strong> {{ hotel.checkout }}</p>
+          <p>Until 12:00 PM</p>
+          <p><strong>Total length of stay:</strong> {{ hotel.duration }} nights</p>
+          <p><strong>You selected:</strong> {{ hotel.numrooms }} rooms for {{ hotel.numguests }} guests</p>
+          <button (click)="changeSelection()" class="btn btn-secondary btn-block">Change your selection</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-container">
+      <h3>Summary</h3>
+      <table class="summary-table table table-bordered">
+        <tr>
+          <td>Original Price:</td>
+          <td>{{ hotel.totalprice | currency:'EGP' }}</td>
+        </tr>
+        <tr>
+          <td>Discount:</td>
+          <td>{{ hotel.discount }}%</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total Price After Discount:</td>
+          <td>{{ totalPriceAfterDiscount | currency:'EGP' }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Form for user details -->
+  <div class="col-md-7">
+    <div class="form-container">
+      <h2>Your Details</h2>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" formControlName="name" class="form-control" />
+        </div>
+        <div *ngIf="f['name'].touched && f['name'].invalid" style="color: red;">
+          <div *ngIf="f['name'].errors && f['name'].errors['required']"> Name is required</div>
+         </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" formControlName="email" class="form-control" />
+        </div>
+        <div *ngIf="f['email'].touched && f['email'].invalid" style="color: red;">
+          <div *ngIf="f['email'].errors && f['email'].errors['required']"> Email is required </div>
+          <div *ngIf="f['email'].errors && f['email'].errors['email']"> Invalid Email </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" id="address" formControlName="address" class="form-control" />
+        </div>
+        <div *ngIf="f['address'].touched && f['address'].invalid" style="color: red;">
+          <div *ngIf="f['address'].errors && f['address'].errors['required']"> Address is required</div>
+         </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control" pattern="^01[0,1,2,5]{1}[0-9]{8}$" 
+          onkeypress="if(this.value.length==11) return false; return /[0-9]/i.test(event.key)" id="phone"  formControlName="phone">
+        </div>
+        <div *ngIf="f['phone'].touched && f['phone'].invalid" style="color: red;">
+          <div *ngIf="f['phone'].errors && f['phone'].errors['required']"> phone is required </div>
+        </div>
+        <div class="button-container">
+          <button type="submit" class="button-primary">Complete your booking</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div *ngIf="showSuccessMessage" id="card" class="animated fadeIn">
+  <div id="upper-side"><svg id="checkmark" xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 512 512">
+    <path fill="#ffffff" d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"/></svg>
+  </div>
+  <div id="lower-side">
+      <p id="message">
+          Congratulations, your {{ successMessage }} created.
+      </p>
+      <a href="/home" id="contBtn">Done</a>
+  </div>
+</div>

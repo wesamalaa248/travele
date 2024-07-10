@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <div class="sidebar" [ngClass]="{ 'active': isSidebarOpen }">
+        <a class="navbar-brand"><img src="assets/travele-logo1.png" alt="Logo"></a>
+        <ul>
+          <li><a href="/addhotel">Add New Hotels</a></li>
+          <li><a href="/himages">Add Hotel Images</a></li>
+          <li><a href="/addflight">Add New Flights</a></li>
+          <li><a href="/addtrip">Add New Trips</a></li>
+          <li><a href="/gethotel">Get Hotels</a></li>
+          <li><a href="/getflight">Get Flights</a></li>
+          <li><a href="/dashboard">Dashboard</a></li>
+        </ul>
+      </div>
+      <button class="toggle-btn" (click)="toggleSidebar()">
+        <i class="fa-solid fa-list fa-xl" style="color: #f6f7f9;"></i>
+      </button>
+    </div>
+
+    <div class="col-md-10">
+      <div class="table-responsive">
+        <table class="table table-striped custab">
+          <thead>
+            <tr>
+              <th>Airline</th>
+              <th>Airline Image</th>
+              <th>Departure Time</th>
+              <th>Arrival Time</th>
+              <th>Departure Airport</th>
+              <th>Arrival Airport</th>
+              <th>Price</th>
+              <th class="text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flights">
+              <td>{{ flight.airline }}</td>
+              <td><img *ngIf="flight.airline_image_url" [src]="flight.airline_image_url" alt="{{ flight.airline }} Image" width="80"></td>
+              <td>{{ flight.departure_time }}</td>
+              <td>{{ flight.arrival_time }}</td>
+              <td class="text-center">{{ flight.departure_airport }}</td>
+              <td class="text-center">{{ flight.arrival_airport }}</td>
+              <td>{{ flight.price }}</td>
+              <td class="text-center">
+                <a class='btn btn-info btn-xs' href="#" [routerLink]="['/editflight', flight.id]"><i class="fas fa-edit"></i> </a>
+                <a (click)="deleteFlight(flight.id)" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

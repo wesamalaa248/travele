@@ -1,0 +1,50 @@
+<div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <div class="col-md-3">
+        <div class="sidebar" [ngClass]="{ 'active': isSidebarOpen }">
+          <a class="navbar-brand"><img src="assets/travele-logo1.png" alt="Logo"></a>
+          <ul>
+            <li><a href="/add-hotels">Add New Hotels</a></li>
+            <li><a href="/add-flights">Add New Flights</a></li>
+            <li><a href="/add-trip">Add New Trips</a></li>
+            <li><a href="/get-hotels">Get Hotels</a></li>
+            <li><a href="/get-flights">Get Flights</a></li>
+            <li><a href="/get-trips">Get Trips</a></li>
+            <li><a href="/dashboard">Dashboard</a></li>
+          </ul>
+        </div>
+        <button class="toggle-btn" (click)="toggleSidebar()">
+          Toggle Sidebar
+        </button>
+      </div>
+      
+      <!-- Main Content -->
+      <div class="col-md-9">
+        <div class="table-responsive">
+          <table class="table table-striped custab">
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th>Check-in</th>
+                <th>Check-out</th>
+                <th class="text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let trip of trips">
+                <td>{{ trip.destination }}</td>
+                <td>{{ trip.checkin }}</td>
+                <td>{{ trip.checkout }}</td>
+                <td class="text-center">
+                  <a class="btn btn-info btn-xs" href="#"><i class="fas fa-edit"></i> Edit</a>
+                  <a href="#" class="btn btn-danger btn-xs"><i class="fas fa-trash-alt"></i> Delete</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  

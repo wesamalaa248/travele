@@ -1,0 +1,78 @@
+
+<section class="py-3 py-md-5" style="background-image: url('../assets/bb.gif'); ">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+        <div class="card border border-light-subtle rounded-3 shadow-sm">
+          <div class="card-body p-3 p-md-4 p-xl-5">
+            <div class="text-center mb-3">
+              <a href="#!">
+                <img src="assets/travele-logo1.png" alt="BootstrapBrain Logo" width="200" height="57">
+              </a>
+            </div>
+            <h3>Add Flight </h3>
+            <form [formGroup]="flightForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="airline">Airline</label>
+                <input type="text" class="form-control" id="airline" formControlName="airline">
+              </div>
+              <div class="form-group">
+                <label for="airline_image">Airline Image</label>
+                <input type="file" class="form-control" id="airline_image" (change)="onFileSelected($event)">
+              </div>
+              <div class="form-group">
+                <label for="flight_number">Flight Number</label>
+                <input type="text" class="form-control" id="flight_number" formControlName="flight_number">
+              </div>
+              <div class="form-group">
+                <label for="departure_airport">Departure Airport</label>
+                <input type="text" class="form-control" id="departure_airport" formControlName="departure_airport">
+              </div>
+              <div class="form-group">
+                <label for="departureTime">Departure Time</label>
+                <input type="datetime-local" class="form-control" id="departure_time" formControlName="departure_time">
+              </div>
+              <div class="form-group">
+                <label for="arrival_airport">Arrival Airport</label>
+                <input type="text" class="form-control" id="arrival_airport" formControlName="arrival_airport">
+              </div>
+              <div class="form-group">
+                <label for="arrivalTime">Arrival Time</label>
+                <input type="datetime-local" class="form-control" id="arrival_time" formControlName="arrival_time">
+              </div>
+              <div class="form-group">
+                <label for="duration">Duration</label>
+                <input type="text" class="form-control" id="duration" formControlName="duration">
+              </div>
+              <div class="form-group">
+                <label for="price">Price</label>
+                <input type="text" class="form-control" id="price" formControlName="price">
+              </div>
+              <div class="form-group">
+                <label for="class">Class</label>
+                <select class="form-control" id="travel_class" formControlName="travel_class">
+                  <option>Economy</option>
+                  <option>Business</option>
+                  <option>First Class</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="trip_id">Trip Name</label>
+                <select class="form-control" id="trip_id" formControlName="trip_id">
+                  <option *ngFor="let trip of trips" [value]="trip.id">{{ trip.destination }}</option>
+                </select>
+              </div><br>
+              <button type="submit" class="btn btn-primary w-100">{{ isEditMode ? 'Update' : 'Add' }} Flight</button>
+            </form>
+            <div *ngIf="message" [ngClass]="messageClass + ' message-box col-md-3'">
+              {{ message }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

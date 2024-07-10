@@ -1,0 +1,109 @@
+<!--  -->
+<header class="hero" style="background-image: url('../assets/slider-banner-1.jpg'); ">
+    <div class="container">
+        <h1>Your Trip Starts Here</h1> <br>
+        <!-- <div class="search-container">
+            <form [formGroup]="searchForm" (submit)="searchHotels()">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="destination" class="form-label">Destination</label>
+                        <input type="text" class="form-control" id="destination"   formControlName="destination" placeholder="City, airport, region, landmark or property name">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="checkin" class="form-label">Check-in</label>
+                        <input type="date" class="form-control" id="start_date" [(ngModel)]="searchCriteria.start_date" name="start_date">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="checkout" class="form-label">Check-out</label>
+                        <input type="date" class="form-control" id="end_date" [(ngModel)]="searchCriteria.end_date" name="end_date">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="guests" class="form-label">Rooms and Guests</label>
+                        <select class="form-select" id="guests" [(ngModel)]="searchCriteria.guests" name="guests">
+                            <option value="1 room, 2 adults, 0 children">1 room, 2 adults, 0 children</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="button-primary w-100">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div> -->
+    </div>
+</header> 
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <h3 class="dash-style">Offers</h3>
+            <h5> Promotions, deals and special offers for you</h5>
+            <div class="col-md-12">
+                <div class="card" style="background-image: url('../assets/offer.jpeg'); ">
+                    <div class="card-body">
+                        <h4 class="card-title">Seize the moment</h4>
+                        <p class="card-text">Save 15% or more when you book</p>
+                        <button type="submit" class="button-primary" (click)="navigateHotelsdeal()">Find Getaway Deals</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trending-container">
+            <h3 class="dash-style">Trending destinations</h3>
+            <h5>Most popular choices for travellers from Egypt</h5>
+            <div class="destinations-grid">
+              <div class="destination-card" *ngFor="let trip of trips" (click)="navigateToHotels(trip.id)">
+                <img [src]="'http://localhost:8000/storage/' + trip.image" alt="">
+                <div class="overlay">
+                  <span class="text">{{ trip.destination }} </span>
+                  <img class="flag" [src]="'../assets/' + getFlagImage(trip.destination)" alt="{{ trip.destination }} Flag">
+                </div>
+              </div>
+            </div>
+          </div>          
+    </div>
+</div>
+<section class="heros">
+  <div class="container">
+    <div class="row"> 
+      <div class="content col-md-7 ">
+         <h3 class="dash-style">Experience The World With Our Company</h3>
+         <p>Lorem ipsum dolor sit amet consectetur. 
+            Platea urna hendrerit dui eget velit sollicitudin orci. 
+            Non sit lorem dolor placerat faucibus. Ut tellus feugiat facilisi neque sagittis cursus sagittis.</p>
+      </div>
+      <div class="col-md-7">
+        <img src="../assets/about.jpg" alt="Travel van">
+      </div>
+    <div class="features col-md-5">
+        <div class="feature active">
+            <div class="icon">$</div>
+            <div class="text">
+             <h4>Best Price Guarantee</h4>
+             <p>A "Best Price Guarantee" is a commitment offered by businesses, typically in the retail or hospitality.</p>
+           </div>
+        </div>
+        <div class="feature">
+            <div class="icon">$</div>
+            <div class="text">
+             <h4>Easy & Quick Booking</h4>
+             <p>A "Best Price Guarantee" is a commitment offered by businesses, typically in the retail or hospitality.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <div class="icon">$</div>
+            <div class="text">
+             <h4>Tour Guide</h4>
+             <p>A "Best Price Guarantee" is a commitment offered by businesses, typically in the retail or hospitality.</p>
+            </div>
+        </div>
+        <div class="feature">
+            <div class="icon">$</div>
+            <div class="text">
+             <h4>World Class Travel</h4>
+             <p>A "Best Price Guarantee" is a commitment offered by businesses, typically in the retail or hospitality.</p>
+            </div>
+        </div>
+    </div>
+   </div>
+  </div>
+</section>
+

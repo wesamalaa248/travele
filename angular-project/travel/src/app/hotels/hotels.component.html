@@ -1,0 +1,91 @@
+<header class="hero" style="background-image: url('assets/hotels.webp');">
+    <div class="container">
+        <h1>Find Best Hotel</h1><br>
+        <div class="search-container">
+            <form [formGroup]="searchForm" (ngSubmit)="searchHotels()">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="destination" class="form-label">Destination</label>
+                        <input type="text" class="form-control" id="destination" formControlName="destination" placeholder="City, airport, region, landmark or property name">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="checkin" class="form-label">Check-in</label>
+                        <input type="date"  class="form-control" id="checkin" formControlName="checkin"  >
+                    </div>
+                    
+                    <div class="col-md-2">
+                        <label for="checkout" class="form-label">Check-out</label>
+                        <input type="date" class="form-control" id="checkout" formControlName="checkout">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="passengers" class="form-label">Rooms and Guests</label>
+                        <div class="passenger-select" (click)="togglePassengerForm()">
+                            <span>{{ rooms }} Room, {{ adults }} Adult</span>
+                        </div>
+                    </div>
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="button-primary w-100">Search</button>
+                    </div>
+                </div>
+            </form>
+            <div *ngIf="showPassengerForm" class="passenger-form">
+                <div class="passenger-form-header">
+                    <span>{{ rooms }} Room, {{ adults }} Adult</span>
+                </div>
+                <p>Please select the exact number of rooms and guests to view the best prices</p>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-6">
+                        <label>Rooms</label>
+                        <div class="passenger-count">
+                            <button type="button" (click)="updateCount('rooms', -1)" [disabled]="rooms <= 1">-</button>
+                            <input type="number" [(ngModel)]="rooms" name="rooms" min="1" readonly>
+                            <button type="button" (click)="updateCount('rooms', 1)">+</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label>Adults</label>
+                        <div class="passenger-count">
+                            <button type="button" (click)="updateCount('adults', -1)" [disabled]="adults <= 1">-</button>
+                            <input type="number" [(ngModel)]="adults" name="adults" min="1" readonly>
+                            <button type="button" (click)="updateCount('adults', 1)">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 mt-3">
+                    <div class="col-md-12">
+                        <button type="button" class="button-primary w-100" (click)="togglePassengerForm()">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="hotel-cards-container" *ngIf="filteredHotels.length">
+    <div class="card" *ngFor="let hotel of filteredHotels">
+        <div class="card-header">
+            <img class="hotel-image" *ngIf="hotel.image" [src]="'http://localhost:8000/storage/' + hotel.image" alt="{{ hotel.name }} Image">
+        </div>
+        <div class="card-body">
+            <h2 class="card-title">{{hotel.name}}</h2>
+            <h2 class="card-location">{{hotel.location}}</h2>
+            <div class="card-price-duration">
+                <span class="card-price">{{hotel.price_per_night | currency:'EGP'}}</span><br>
+                <span class="card-location" *ngIf="hotel.discount">Discount: {{ hotel.discount }}%</span><br>
+                <span class="card-duration" *ngIf="hotel.totalPrice">{{hotel.duration}} night(s)</span><br>
+                <span class="card-guests" *ngIf="hotel.totalPrice">{{hotel.numrooms}} room x {{hotel.numguests}} adult(s)</span><br>
+                <span class="card-price card-total-price" *ngIf="hotel.totalPrice">Total Price: {{hotel.totalPrice | currency:'EGP'}}</span>
+            </div>
+            <div class="card-rating-reviews">
+                <p class="card-rating">{{hotel.rate}} ⭐</p>
+            </div>
+            <button class="book-now-btn" (click)="viewHotelDetails(hotel)">More Details</button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!filteredHotels.length" class="destination text-center">
+    <p>No hotels found for this destination.</p>
+</div>
+
+
+

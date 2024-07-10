@@ -1,0 +1,112 @@
+<header class="hero" style="background-image: url('../assets/flights.webp');">
+    <div class="container">
+        <h1 class="header">Tickets</h1> 
+    </div>
+</header>
+<div class="container">
+  <div class="ticket" id="printTicketSection">
+    <div class="boarding">BOARDING</div>
+    <div class="ticket-bodyleft">
+        <div class="ticket-section">
+            <div class="ticket-header">
+                <div class="city">
+                    <i class="fa-solid fa-plane plane-icon" style="color: #FFD43B;"></i> {{ flight.departure_airport }}
+                </div>
+                <div class="boarding-till">
+                    <img class="qr-code" src="assets/qrcode.jpeg" alt="QR Code">
+                </div>
+            </div>
+            <div class="ticket-info">
+                <div class="row">
+                    <div class="label">Name of Passenger:</div>
+                    <div class="value">{{ userName }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">From:</div>
+                    <div class="value">{{ flight.departure_airport }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">To:</div>
+                    <div class="value">{{ flight.arrival_airport }}</div>
+                </div>
+                <div class="time-flight">
+                    <div class="row">
+                        <div class="label">Dep Date:</div>
+                        <div class="value">{{ flight.departure_time | date:'yyyy-MM-dd' }} </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Time:</div>
+                        <div class="value">{{ flight.departure_time | date:'HH:mm:ss' }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Arrival Date:</div>
+                        <div class="value">{{ flight.arrival_time | date:'yyyy-MM-dd' }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Time:</div>
+                        <div class="value">{{ flight.arrival_time | date:'HH:mm:ss' }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Flight No:</div>
+                        <div class="value">{{ flight.flight_number }}</div>
+                    </div>
+                </div>
+                <div class="till">
+                  <div>
+                      تغلق البوابه قبل 15 دقائق من الاقلاع<br>
+                      <span>Gate closes 15 Min before departure time</span>
+                  </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <div class="ticket-bodyright">
+        <div class="ticket-section">
+            <div class="ticket-header">
+                <div class="city">
+                    <i class="fa-solid fa-plane plane-icon" style="color: #FFD43B;"></i> {{ flight.departure_airport }}
+                </div>
+                <div class="boarding-till">
+                    <img class="qr-code" src="assets/qrcode.jpeg" alt="QR Code">
+                </div>
+            </div>
+            <div class="ticket-info">
+                <div class="row">
+                    <div class="label">Name of Passenger:</div>
+                    <div class="value">{{ userName }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">From:</div>
+                    <div class="value">{{ flight.departure_airport }}</div>
+                </div>
+                <div class="row">
+                    <div class="label">To:</div>
+                    <div class="value">{{ flight.arrival_airport }}</div>
+                </div>
+                <div class="time-flight">
+                    <div class="row">
+                        <div class="label">Flight No:</div>
+                        <div class="value">{{ flight.flight_number }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Class:</div>
+                        <div class="value">{{ travelClass  }} </div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Dep Date:</div>
+                        <div class="value">{{ flight.departure_time | date:'yyyy-MM-dd' }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="label">Dep Time:</div>
+                        <div class="value">{{ flight.departure_time | date:'HH:mm:ss' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <div class="text-center mt-3" style="margin-bottom: 10px;">
+    <button class="button-primary" (click)="printTicket()">Print Ticket</button>
+  </div>
+</div>
+
